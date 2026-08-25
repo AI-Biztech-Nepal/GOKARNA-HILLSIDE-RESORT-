@@ -1,0 +1,176 @@
+{
+  "about": {
+    "image": "/assets/uploads/821a61c73a2f428e913bd84223b5f5d5.jpg"
+  },
+  "addons": [
+    {
+      "id": "breakfast",
+      "name": "Daily Breakfast",
+      "perGuestPerNight": true,
+      "rate": 800,
+      "unit": "per guest, per night"
+    },
+    {
+      "id": "dinner",
+      "name": "Candlelight Hillside Dinner",
+      "rate": 3500,
+      "unit": "one-time"
+    }
+  ],
+  "contact": {
+    "address": "Jagdol, Gokarna, Kathmandu, Nepal",
+    "email": "stay@gokarnahillside.com",
+    "phone": "+977 9709047230"
+  },
+  "currency": "NPR",
+  "experiences": [
+    {
+      "id": "nature-walks",
+      "image": "/assets/uploads/f469ad10f87b456ca77e1e8c95706fb0.jpg"
+    },
+    {
+      "id": "wellness",
+      "image": "/assets/uploads/8fb6d462725644eabdafcdb0ad497521.jpg"
+    },
+    {
+      "id": "viewpoints",
+      "image": "/assets/uploads/d3ae5c98eb86439685b42bc0167b1ed2.jpg"
+    },
+    {
+      "id": "outdoor-dining",
+      "image": "/assets/uploads/ae55769125aa42ab9dade8e6c81f5fdf.jpg"
+    },
+    {
+      "id": "family-time",
+      "image": "/assets/uploads/6ae45d2e4e944c2c9f99557019a3ff3b.jpg"
+    },
+    {
+      "id": "local-experiences",
+      "image": "/assets/uploads/2018887a46fb45a79cea71cb31bce5c0.jpg"
+    }
+  ],
+  "gallery": [
+    {
+      "image": "/assets/uploads/cd434ddd3f0a4de7911d1a7cfdad246f.webp",
+      "size": "h1",
+      "tag": "Resort Exterior"
+    },
+    {
+      "image": "/assets/uploads/624311a637d74fd8a1fcd87038446482.jpg",
+      "size": "h2",
+      "tag": "Bar"
+    },
+    {
+      "image": "/assets/uploads/00d19b815b6545d0848efe2be6fba659.jpg",
+      "size": "h3",
+      "tag": "Dining"
+    },
+    {
+      "image": "/assets/uploads/3060c91fe6a64cd89b285d294982d007.jpeg",
+      "size": "h2",
+      "tag": "Gardens"
+    },
+    {
+      "image": "/assets/uploads/413ae518f7a74cf5b5969f88979f727d.jpg",
+      "size": "h1",
+      "tag": "Hillside Views"
+    },
+    {
+      "image": "/assets/uploads/4802cc44a53e4acf95def0cc8da06305.jpg",
+      "size": "h2",
+      "tag": "Common Areas"
+    }
+  ],
+  "hero": {
+    "eyebrow": "Jagdol, Gokarna, Nepal",
+    "images": [
+      "/assets/uploads/37fec6e736484509a850fb7c29dd9dba.jpg",
+      "/assets/uploads/f2ce5ddc39d34bc5b8e42a99f60bccf8.jpg",
+      "/assets/uploads/8121d47199dc48589735f11d6ebd02f8.jpg",
+      "/assets/uploads/dc21a28bbf82456c924cdc7b7c5406d6.jpg",
+      "/assets/uploads/ac75636aee5740c1a91eb968f5394f74.jpg"
+    ],
+    "subtitle": "Experience peace, nature, and warm Nepalese hospitality at Gokarna Hillside Resort — a boutique retreat cradled in the forested hills above the Kathmandu Valley.",
+    "title_emphasis": "Hills",
+    "title_line1": "Escape to"
+  },
+  "menu": [
+    {
+      "group": "Food",
+      "id": "momo",
+      "image": "/assets/uploads/5bbdb6e859474a4d944db651f16d0524.jpg",
+      "name": "Steamed Momo (Veg or Chicken)",
+      "price": 380
+    },
+    {
+      "group": "Food",
+      "id": "dalbhat",
+      "image": "/assets/uploads/d40cc8924a7440e19139331c5eb5a45d.jpg",
+      "name": "Dal Bhat Set (Non Veg)",
+      "price": 550
+    },
+    {
+      "group": "Beverages",
+      "id": "chiya",
+      "image": "/assets/uploads/7ac5bf9a0ef849daa3df3b383cf018aa.jpg",
+      "name": "Nepali Masala Chiya",
+      "price": 75
+    },
+    {
+      "group": "Beverages",
+      "id": "wine",
+      "image": "/assets/uploads/fba97f7a9ec446d5ac9133e227c3c680.jpg",
+      "name": "Tuborg Beer",
+      "price": 650
+    },
+    {
+      "group": "Food",
+      "id": "item-70on9s",
+      "image": "/assets/uploads/6bf2bdd69a4c49e9b80e7dbb2a7926a1.jpg",
+      "name": "Easy Roasted Pizza",
+      "price": 1200
+    }
+  ],
+  "rooms": [
+    {
+      "amenities": [
+        "Private Balcony",
+        "Forest View",
+        "Free Wi-Fi"
+      ],
+      "description": "A warm, wood-toned room with a private balcony overlooking the pine forest — ideal for travellers seeking simple comfort and quiet.",
+      "id": "8500",
+      "image": "/assets/uploads/dcf8ef7bd53549538a20bf2ca0296a3f.jpg",
+      "name": "Hillside Deluxe Room",
+      "rate": 3500,
+      "tag": "Hillside View"
+    },
+    {
+      "amenities": [
+        "Sitting Area",
+        "Valley View",
+        "Soaking Tub"
+      ],
+      "description": "A spacious suite with a separate sitting area and floor-to-ceiling windows framing the terraced hillside and distant valley views.",
+      "id": "12500",
+      "image": "/assets/uploads/2c52225ee0f549a9bb59b7d7419b783f.jpg",
+      "name": "Hillside Premium Room",
+      "rate": 4500,
+      "tag": "Guest Favourite"
+    },
+    {
+      "amenities": [
+        "2 Bedrooms",
+        "Garden Access",
+        "Breakfast Included"
+      ],
+      "description": "Two connected rooms with locally crafted furnishings, a shared lounge, and easy access to the gardens — comfortable space for the whole family.",
+      "id": "18500",
+      "image": "/assets/uploads/a5560deb10034c79bc0fd263f83c6086.webp",
+      "name": "Heritage Family Suite",
+      "rate": 18500,
+      "tag": "For Families"
+    }
+  ],
+  "tax_rate": 0.13
+}

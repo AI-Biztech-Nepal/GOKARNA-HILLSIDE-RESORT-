@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estimate Your Stay | Gokarna Hillside Resort</title>
+<meta name="description" content="Choose your room, nights and extras at Gokarna Hillside Resort and see an instant price estimate, including real food and beverage menu pricing.">
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+/* Page banner */
+.page-banner{position:relative;overflow:hidden;padding:clamp(7.5rem,14vw,9.5rem) 0 clamp(3rem,6vw,4.5rem);
+  background:linear-gradient(160deg,#12301f 0%,#1F4D36 45%,#2c5b3f 100%);}
+.page-banner::before{content:"";position:absolute;inset:0;background-image:var(--topo-gold);background-size:260px;opacity:.16;}
+.page-banner .wrap{position:relative;}
+.crumb{display:flex;align-items:center;gap:.5rem;font-size:.78rem;color:var(--sage-soft);}
+.crumb a{color:var(--gold-soft);transition:color .3s var(--ease);}
+.crumb a:hover{color:var(--ivory);}
+.page-banner h1{color:var(--ivory);font-size:clamp(2.3rem,5vw,3.4rem);margin-top:.6rem;}
+.page-banner p{color:var(--sage-soft);margin-top:1rem;max-width:540px;font-size:1.02rem;line-height:1.75;}
+
+/* Estimate section */
+.estimate{background:var(--ivory-deep);padding:clamp(3rem,6vw,4.5rem) 0 var(--pad-section);}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="nav" id="siteNav">
+  <div class="wrap">
+    <a href="index.html" class="brand">
+      <svg class="brand-mark" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M24 4 L44 34 H4 Z" stroke="currentColor" stroke-width="1.4" fill="none"/>
+        <path d="M24 16 L36 34 H12 Z" stroke="currentColor" stroke-width="1.4" fill="none"/>
+        <circle cx="24" cy="24" r="21.5" stroke="currentColor" stroke-width="1" opacity=".5"/>
+      </svg>
+      <span class="brand-text">
+        <span class="name">Gokarna Hillside</span>
+        <span class="loc">Resort &middot; Nepal</span>
+      </span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="rooms.html">Rooms &amp; Suites</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="index.html#experiences">Experiences</a></li>
+      <li><a href="index.html#gallery">Gallery</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+      <li class="nav-mobile-cta"><a href="estimate.html" class="btn btn-outline-gold nav-cta" aria-current="page">Estimate Your Stay</a></li>
+      <li class="nav-mobile-cta"><a href="book.html" class="btn btn-gold nav-cta">Book Your Stay</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="nav-cta-group desktop-only">
+        <a href="estimate.html" class="btn btn-outline-gold nav-cta" aria-current="page">Estimate Your Stay</a>
+        <a href="book.html" class="btn btn-gold nav-cta">Book Your Stay</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+        <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><path d="M4 8h18M4 13h18M4 18h18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="nav-scrim" id="navScrim"></div>
+
+<!-- Page banner -->
+<section class="page-banner">
+  <div class="wrap">
+    <p class="crumb"><a href="index.html">Home</a> / <span>Estimate Your Stay</span></p>
+    <h1>Know Your Price, Instantly</h1>
+    <p>Choose your room, nights and any extras — including real food and beverage menu pricing — and see your total right away, before you commit to a booking.</p>
+  </div>
+</section>
+
+<!-- Estimate -->
+<section class="estimate">
+  <div class="wrap">
+
+    <div class="calc-panel reveal">
+      <div class="calc-form">
+        <div class="field">
+          <label for="packageType">Package Type</label>
+          <div class="select-wrap">
+            <select id="packageType">
+              <option value="personal">Personal</option>
+              <option value="corporate">Corporate / Picnic Package</option>
+            </select>
+            <svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="estRoom">Room Type</label>
+          <div class="select-wrap">
+            <select id="estRoom"></select>
+            <svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label>Nights</label>
+            <div class="stepper" data-stepper="nights">
+              <button type="button" data-step="-1" aria-label="Decrease nights">&minus;</button>
+              <span id="nightsVal">2</span>
+              <button type="button" data-step="1" aria-label="Increase nights">&plus;</button>
+            </div>
+          </div>
+          <div class="field">
+            <label>Guests</label>
+            <div class="stepper" data-stepper="guests">
+              <button type="button" data-step="-1" aria-label="Decrease guests">&minus;</button>
+              <span id="guestsVal">2</span>
+              <button type="button" data-step="1" aria-label="Increase guests">&plus;</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Add-ons</label>
+          <div class="addon-list">
+            <label class="addon">
+              <input type="checkbox" id="addBreakfast" checked>
+              <span class="txt"><span class="name">Daily Breakfast</span><span class="price">NPR 800 per guest, per night</span></span>
+            </label>
+            <label class="addon">
+              <input type="checkbox" id="addTransfer">
+              <span class="txt"><span class="name">Airport Transfer</span><span class="price">NPR 2,500 one-way</span></span>
+            </label>
+            <label class="addon">
+              <input type="checkbox" id="addDinner">
+              <span class="txt"><span class="name">Candlelight Hillside Dinner</span><span class="price">NPR 3,500, one-time</span></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Food &amp; Beverage Menu <span class="label-note">(optional — add real menu pricing to your stay)</span></label>
+          <div class="menu-groups" id="menuGroups"></div>
+        </div>
+      </div>
+
+      <div class="calc-summary">
+        <p class="eyebrow on-dark">Your Estimate</p>
+        <span class="script">Ready when you are</span>
+        <div class="lines">
+          <div class="line"><span>Room (<span id="sumNights">2</span> nights)</span><b id="sumRoom">NPR 0</b></div>
+          <div class="line"><span>Breakfast</span><b id="sumBreakfast">NPR 0</b></div>
+          <div class="line"><span>Airport transfer</span><b id="sumTransfer">NPR 0</b></div>
+          <div class="line"><span>Candlelight dinner</span><b id="sumDinner">NPR 0</b></div>
+          <div class="line"><span>Food &amp; beverages</span><b id="sumMenu">NPR 0</b></div>
+          <div class="line"><span>Tax &amp; service (13%)</span><b id="sumTax">NPR 0</b></div>
+        </div>
+        <div class="total">
+          <span class="lbl">Estimated Total</span>
+          <span class="amt" id="sumTotal">NPR 0</span>
+        </div>
+        <a href="book.html" id="estimateBookBtn" class="btn btn-gold">Book This Estimate</a>
+        <p class="note">This is an instant estimate, not a final quote. Continuing to booking carries your selections over so you can confirm the details with us.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="index.html" class="brand">
+          <svg class="brand-mark" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M24 4 L44 34 H4 Z" stroke="currentColor" stroke-width="1.4" fill="none"/>
+            <path d="M24 16 L36 34 H12 Z" stroke="currentColor" stroke-width="1.4" fill="none"/>
+            <circle cx="24" cy="24" r="21.5" stroke="currentColor" stroke-width="1" opacity=".5"/>
+          </svg>
+          <span class="brand-text"><span class="name">Gokarna Hillside</span><span class="loc">Resort &middot; Nepal</span></span>
+        </a>
+        <p>A boutique hillside retreat in Jagadol, Gokarna — offering peaceful accommodation, local dining, and warm Nepalese hospitality just above the Kathmandu Valley.</p>
+        <div class="foot-social" aria-label="Social media">
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none"><path d="M14 9h3V6h-3c-2 0-3.5 1.5-3.5 3.5V11H8v3h2.5v6h3v-6H16l.5-3h-3V9.8c0-.5.3-.8.8-.8Z" fill="currentColor"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="4" stroke="currentColor" stroke-width="1.4"/><circle cx="12" cy="12" r="3.6" stroke="currentColor" stroke-width="1.4"/><circle cx="16.6" cy="7.4" r="1" fill="currentColor"/></svg></a>
+          <a href="#" aria-label="TripAdvisor"><svg viewBox="0 0 24 24" fill="none"><circle cx="8" cy="13" r="3.4" stroke="currentColor" stroke-width="1.4"/><circle cx="16" cy="13" r="3.4" stroke="currentColor" stroke-width="1.4"/><path d="M12 9.5c-2-2-6-2.2-9.5-.6M12 9.5c2-2 6-2.2 9.5-.6" stroke="currentColor" stroke-width="1.4"/></svg></a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="rooms.html">Rooms &amp; Suites</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="index.html#experiences">Experiences</a></li>
+          <li><a href="index.html#gallery">Gallery</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Resort</h4>
+        <ul>
+          <li><a href="index.html#about">About Us</a></li>
+          <li><a href="index.html#testimonials">Guest Reviews</a></li>
+          <li><a href="index.html#contact">Location</a></li>
+          <li><a href="book.html">Book Your Stay</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <ul>
+          <li class="contact-item"><a href="https://maps.app.goo.gl/GP5NUJcRk6WhQDvW8" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2C7.6 2 4 5.6 4 10c0 6 8 12 8 12s8-6 8-12c0-4.4-3.6-8-8-8Zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" stroke="currentColor" stroke-width="1.3"/></svg><span data-content="contact.address">Jagadol, Gokarna, Kathmandu, Nepal</span></a></li>
+          <li class="contact-item"><a href="tel:+9771-000-0000" data-content-href="contact.phone"><svg viewBox="0 0 24 24" fill="none"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2C10.5 21 3 13.5 3 6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.3"/></svg><span data-content="contact.phone">+977 1-000-0000</span></a></li>
+          <li class="contact-item"><a href="mailto:stay@gokarnahillside.com" data-content-href="contact.email"><svg viewBox="0 0 24 24" fill="none"><path d="M3 6l9 6 9-6M4 5h16v14H4Z" stroke="currentColor" stroke-width="1.3"/></svg><span data-content="contact.email">stay@gokarnahillside.com</span></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; <span id="year"></span> Gokarna Hillside Resort. All rights reserved.</span>
+      <span>Jagadol, Gokarna, Nepal</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/pricing.js"></script>
+<script src="assets/main.js"></script>
+<script src="assets/content-loader.js"></script>
+<script>
+(function(){
+  var pricing = window.RESORT_PRICING;
+  var fmt = window.formatPrice;
+
+  var packageType = document.getElementById('packageType');
+  var estRoom = document.getElementById('estRoom');
+  var nightsVal = document.getElementById('nightsVal');
+  var guestsVal = document.getElementById('guestsVal');
+  var addBreakfast = document.getElementById('addBreakfast');
+  var addTransfer = document.getElementById('addTransfer');
+  var addDinner = document.getElementById('addDinner');
+  var menuGroups = document.getElementById('menuGroups');
+  var state = { nights: 2, guests: 2 };
+
+  pricing.rooms.forEach(function(room){
+    var opt = document.createElement('option');
+    opt.value = room.id;
+    opt.setAttribute('data-rate', room.rate);
+    opt.textContent = room.name + ' — ' + fmt(room.rate) + ' / night';
+    estRoom.appendChild(opt);
+  });
+
+  window.renderMenuGroups(menuGroups);
+  menuGroups.addEventListener('menuchange', calcEstimate);
+
+  document.querySelectorAll('[data-stepper]').forEach(function(stepper){
+    var key = stepper.getAttribute('data-stepper');
+    stepper.querySelectorAll('button').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var step = parseInt(btn.getAttribute('data-step'), 10);
+        var max = key === 'nights' ? 30 : 8;
+        state[key] = Math.min(max, Math.max(1, state[key] + step));
+        (key === 'nights' ? nightsVal : guestsVal).textContent = state[key];
+        calcEstimate();
+      });
+    });
+  });
+
+  function calcEstimate(){
+    var nights = state.nights, guests = state.guests;
+    var roomRate = parseInt(estRoom.options[estRoom.selectedIndex].getAttribute('data-rate'), 10);
+    var roomTotal = roomRate * nights;
+    var breakfastTotal = addBreakfast.checked ? window.addonRate('breakfast') * guests * nights : 0;
+    var transferTotal = addTransfer.checked ? window.addonRate('transfer') : 0;
+    var dinnerTotal = addDinner.checked ? window.addonRate('dinner') : 0;
+    var menuItems = window.selectedMenuItems(menuGroups);
+    var menuTotal = menuItems.reduce(function(sum, item){ return sum + item.price * item.qty; }, 0);
+    var subtotal = roomTotal + breakfastTotal + transferTotal + dinnerTotal + menuTotal;
+    var tax = subtotal * pricing.taxRate;
+    var total = subtotal + tax;
+
+    document.getElementById('sumNights').textContent = nights;
+    document.getElementById('sumRoom').textContent = fmt(roomTotal);
+    document.getElementById('sumBreakfast').textContent = fmt(breakfastTotal);
+    document.getElementById('sumTransfer').textContent = fmt(transferTotal);
+    document.getElementById('sumDinner').textContent = fmt(dinnerTotal);
+    document.getElementById('sumMenu').textContent = fmt(menuTotal);
+    document.getElementById('sumTax').textContent = fmt(tax);
+    document.getElementById('sumTotal').textContent = fmt(total);
+
+    var params = new URLSearchParams();
+    params.set('package', packageType.value);
+    params.set('room', estRoom.value);
+    params.set('nights', nights);
+    params.set('guests', guests);
+    if(addBreakfast.checked) params.set('breakfast', '1');
+    if(addTransfer.checked) params.set('transfer', '1');
+    if(addDinner.checked) params.set('dinner', '1');
+    if(menuItems.length){
+      params.set('menu', menuItems.map(function(item){ return item.id + ':' + item.qty; }).join(','));
+    }
+    document.getElementById('estimateBookBtn').href = 'book.html?' + params.toString();
+  }
+
+  [packageType, estRoom, addBreakfast, addTransfer, addDinner].forEach(function(el){
+    el.addEventListener('change', calcEstimate);
+  });
+  calcEstimate();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Admin Login | Gokarna Hillside Resort</title>
+<link rel="stylesheet" href="/assets/admin.css">
+</head>
+<body class="login-body">
+  <main class="login-card">
+    <p class="login-eyebrow">Gokarna Hillside Resort</p>
+    <h1>Admin Login</h1>
+    <form id="loginForm" autocomplete="off">
+      <div class="field">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" autocomplete="username" required autofocus>
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" autocomplete="current-password" required>
+      </div>
+      <p class="login-error" id="loginError" hidden></p>
+      <button type="submit" class="btn-primary">Log In</button>
+    </form>
+  </main>
+  <script>
+  document.getElementById('loginForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var errorEl = document.getElementById('loginError');
+    errorEl.hidden = true;
+    fetch('/api/admin/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: document.getElementById('username').value,
+        password: document.getElementById('password').value
+      })
+    }).then(function(res){ return res.json().then(function(body){ return { ok: res.ok, body: body }; }); })
+      .then(function(result){
+        if(!result.ok){
+          errorEl.textContent = result.body.error || 'Login failed.';
+          errorEl.hidden = false;
+          return;
+        }
+        window.location.href = '/admin';
+      }).catch(function(){
+        errorEl.textContent = 'Could not reach the server.';
+        errorEl.hidden = false;
+      });
+  });
+  </script>
+</body>
+</html>

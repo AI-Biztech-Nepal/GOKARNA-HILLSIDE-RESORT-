@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Admin | Gokarna Hillside Resort</title>
+<link rel="stylesheet" href="/assets/admin.css">
+</head>
+<body>
+  <header class="admin-top">
+    <div class="admin-top-inner">
+      <div class="admin-brand">Gokarna Hillside Resort <span>Admin</span></div>
+      <div class="admin-top-right">
+        <a href="/" target="_blank" rel="noopener" class="btn-ghost">View Site &#8599;</a>
+        <span class="admin-user">{{ username }}</span>
+        <button type="button" id="logoutBtn" class="btn-ghost">Log Out</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="admin-layout">
+    <nav class="admin-nav">
+      <button type="button" class="tab-btn active" data-tab="hero">Hero &amp; Contact</button>
+      <button type="button" class="tab-btn" data-tab="rooms">Rooms &amp; Pricing</button>
+      <button type="button" class="tab-btn" data-tab="addons">Add-ons</button>
+      <button type="button" class="tab-btn" data-tab="menu">Food &amp; Beverage Menu</button>
+      <button type="button" class="tab-btn" data-tab="gallery">Gallery &amp; Imagery</button>
+      <button type="button" class="tab-btn" data-tab="about">About &amp; Experiences</button>
+      <button type="button" class="tab-btn" data-tab="account">Account</button>
+    </nav>
+
+    <main class="admin-content">
+      <div id="statusBanner" class="status-banner" hidden></div>
+
+      <section class="tab-panel active" data-panel="hero">
+        <h2>Hero &amp; Contact</h2>
+        <p class="panel-hint">Controls the homepage hero banner and the contact details shown across the site.</p>
+
+        <div class="field-grid">
+          <div class="field">
+            <label for="heroEyebrow">Eyebrow text</label>
+            <input type="text" id="heroEyebrow">
+          </div>
+          <div class="field">
+            <label for="heroTitleLine1">Title (first line)</label>
+            <input type="text" id="heroTitleLine1">
+          </div>
+          <div class="field">
+            <label for="heroTitleEmphasis">Title (emphasis word)</label>
+            <input type="text" id="heroTitleEmphasis">
+          </div>
+        </div>
+        <div class="field">
+          <label for="heroSubtitle">Subtitle</label>
+          <textarea id="heroSubtitle" rows="3"></textarea>
+        </div>
+        <div class="field">
+          <label>Hero slideshow photos</label>
+          <p class="panel-hint" style="margin:0 0 .9rem;">Add one photo for a static hero banner, or several for an auto-rotating slideshow (shown in this order). No photos keeps the decorative pattern.</p>
+          <div id="heroImagesList" class="gallery-grid"></div>
+          <label class="image-picker small add-tile" id="heroImageAdder">
+            <span class="image-preview">+ Add Photo</span>
+            <input type="file" id="heroImageAddInput" accept="image/*" style="display:none;">
+          </label>
+        </div>
+
+        <h3>Contact Details</h3>
+        <div class="field-grid">
+          <div class="field">
+            <label for="contactAddress">Address</label>
+            <input type="text" id="contactAddress">
+          </div>
+          <div class="field">
+            <label for="contactEmail">Email</label>
+            <input type="email" id="contactEmail">
+          </div>
+          <div class="field">
+            <label for="contactPhone">Phone</label>
+            <input type="text" id="contactPhone">
+          </div>
+        </div>
+
+        <button type="button" class="btn-primary" data-save="hero">Save Hero &amp; Contact</button>
+      </section>
+
+      <section class="tab-panel" data-panel="rooms">
+        <h2>Rooms &amp; Pricing</h2>
+        <p class="panel-hint">Room rates feed the booking form, the stay estimator, and the homepage room cards automatically.</p>
+        <div id="roomsList" class="card-list"></div>
+        <button type="button" class="btn-ghost" id="addRoomBtn">+ Add Room</button>
+        <div class="field" style="margin-top:1.5rem;max-width:220px;">
+          <label for="taxRate">Tax rate (%)</label>
+          <input type="number" id="taxRate" min="0" max="100" step="0.1">
+        </div>
+        <button type="button" class="btn-primary" data-save="rooms">Save Rooms &amp; Pricing</button>
+      </section>
+
+      <section class="tab-panel" data-panel="addons">
+        <h2>Add-ons</h2>
+        <p class="panel-hint">Optional extras offered at booking, like breakfast or airport transfer.</p>
+        <div id="addonsList" class="card-list"></div>
+        <button type="button" class="btn-ghost" id="addAddonBtn">+ Add Add-on</button>
+        <button type="button" class="btn-primary" data-save="addons">Save Add-ons</button>
+      </section>
+
+      <section class="tab-panel" data-panel="menu">
+        <h2>Food &amp; Beverage Menu</h2>
+        <p class="panel-hint">Shown in the booking form and stay estimator, grouped by category (e.g. Food, Beverages).</p>
+        <div id="menuList" class="card-list"></div>
+        <button type="button" class="btn-ghost" id="addMenuBtn">+ Add Menu Item</button>
+        <button type="button" class="btn-primary" data-save="menu">Save Menu</button>
+      </section>
+
+      <section class="tab-panel" data-panel="gallery">
+        <h2>Gallery &amp; Imagery</h2>
+        <p class="panel-hint">Upload real photos for the homepage gallery. Slots left empty keep their decorative placeholder.</p>
+        <div id="galleryList" class="card-list gallery-grid"></div>
+        <button type="button" class="btn-primary" data-save="gallery">Save Gallery</button>
+      </section>
+
+      <section class="tab-panel" data-panel="about">
+        <h2>About &amp; Experiences</h2>
+        <p class="panel-hint">Optional photos for the homepage's "Welcome" section and the six Resort Experiences cards. Leave any of these empty and they keep their decorative icon/pattern.</p>
+
+        <h3 style="margin-top:0;">Welcome / About Photo</h3>
+        <div class="image-picker" id="aboutImagePicker">
+          <div class="image-preview">No photo</div>
+          <input type="file" id="aboutImageInput" accept="image/*">
+          <button type="button" class="btn-ghost btn-xs" id="aboutImageClear" data-clear-image>Remove</button>
+        </div>
+
+        <h3>Resort Experiences Photos</h3>
+        <div id="experiencesList" class="card-list gallery-grid"></div>
+
+        <button type="button" class="btn-primary" data-save="about">Save About &amp; Experiences</button>
+      </section>
+
+      <section class="tab-panel" data-panel="account">
+        <h2>Account</h2>
+        <p class="panel-hint">Change the password used to log into this admin panel.</p>
+        <div class="field">
+          <label for="currentPassword">Current password</label>
+          <input type="password" id="currentPassword" autocomplete="current-password">
+        </div>
+        <div class="field">
+          <label for="newPassword">New password (min 10 characters)</label>
+          <input type="password" id="newPassword" autocomplete="new-password">
+        </div>
+        <button type="button" class="btn-primary" id="changePasswordBtn">Change Password</button>
+      </section>
+    </main>
+  </div>
+
+  <template id="roomRowTemplate">
+    <div class="card-row" data-room-row>
+      <div class="image-picker small">
+        <div class="image-preview">No photo</div>
+        <input type="file" accept="image/*" data-field="image">
+        <button type="button" class="btn-ghost btn-xs" data-clear-image>Remove</button>
+      </div>
+      <div class="card-row-fields">
+        <div class="field-grid">
+          <div class="field"><label>Name</label><input type="text" data-field="name"></div>
+          <div class="field"><label>Tag (badge text)</label><input type="text" data-field="tag"></div>
+          <div class="field"><label>Rate per night</label><input type="number" min="0" step="1" data-field="rate"></div>
+        </div>
+        <div class="field"><label>Description</label><textarea rows="2" data-field="description"></textarea></div>
+        <div class="field"><label>Amenities (comma-separated)</label><input type="text" data-field="amenities"></div>
+      </div>
+      <button type="button" class="btn-ghost btn-xs remove-btn" data-remove-row>Remove Room</button>
+    </div>
+  </template>
+
+  <template id="addonRowTemplate">
+    <div class="card-row compact" data-addon-row>
+      <div class="field-grid">
+        <div class="field"><label>Name</label><input type="text" data-field="name"></div>
+        <div class="field"><label>Rate</label><input type="number" min="0" step="1" data-field="rate"></div>
+        <div class="field"><label>Unit label</label><input type="text" data-field="unit"></div>
+      </div>
+      <button type="button" class="btn-ghost btn-xs remove-btn" data-remove-row>Remove</button>
+    </div>
+  </template>
+
+  <template id="menuRowTemplate">
+    <div class="card-row" data-menu-row>
+      <div class="image-picker small">
+        <div class="image-preview">No photo</div>
+        <input type="file" accept="image/*" data-field="image">
+        <button type="button" class="btn-ghost btn-xs" data-clear-image>Remove</button>
+      </div>
+      <div class="card-row-fields">
+        <div class="field-grid">
+          <div class="field"><label>Name</label><input type="text" data-field="name"></div>
+          <div class="field"><label>Price</label><input type="number" min="0" step="1" data-field="price"></div>
+          <div class="field"><label>Group</label><input type="text" data-field="group" placeholder="Food / Beverages"></div>
+        </div>
+      </div>
+      <button type="button" class="btn-ghost btn-xs remove-btn" data-remove-row>Remove</button>
+    </div>
+  </template>
+
+  <template id="heroImageRowTemplate">
+    <div class="card-row gallery-row" data-hero-image-row>
+      <div class="image-picker">
+        <div class="image-preview"></div>
+      </div>
+      <div class="hero-image-actions">
+        <button type="button" class="btn-ghost btn-xs" data-move="-1" aria-label="Move earlier">&uarr;</button>
+        <button type="button" class="btn-ghost btn-xs" data-move="1" aria-label="Move later">&darr;</button>
+        <button type="button" class="btn-ghost btn-xs remove-btn" data-remove-row>Remove</button>
+      </div>
+    </div>
+  </template>
+
+  <template id="galleryRowTemplate">
+    <div class="card-row gallery-row" data-gallery-row>
+      <div class="image-picker">
+        <div class="image-preview">No photo</div>
+        <input type="file" accept="image/*" data-field="image">
+        <button type="button" class="btn-ghost btn-xs" data-clear-image>Remove photo</button>
+      </div>
+      <div class="field"><label>Caption</label><input type="text" data-field="tag"></div>
+    </div>
+  </template>
+
+  <template id="experienceRowTemplate">
+    <div class="card-row gallery-row" data-experience-row>
+      <div class="image-picker">
+        <div class="image-preview">No photo</div>
+        <input type="file" accept="image/*" data-field="image">
+        <button type="button" class="btn-ghost btn-xs" data-clear-image>Remove photo</button>
+      </div>
+      <p class="exp-label" style="margin:0;font-size:.85rem;font-weight:600;color:var(--ink);text-align:center;"></p>
+    </div>
+  </template>
+
+  <script>
+    window.ADMIN_CSRF_TOKEN = {{ csrf_token | tojson }};
+  </script>
+  <script src="/assets/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gokarna Hillside Resort | Boutique Hillside Retreat in Jagadol, Gokarna</title>
+<meta name="description" content="A peaceful boutique resort in the forested hills of Jagadol, Gokarna, Nepal — comfortable rooms, local dining, and warm Nepalese hospitality.">
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+/* Hero */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;
+  background:
+    linear-gradient(160deg,#12301f 0%,#1F4D36 42%,#2c5b3f 68%,#3c6a4a 100%);}
+.hero-media{position:absolute;inset:0;z-index:0;overflow:hidden;background:inherit;}
+.hero-media .hero-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 62%;
+  opacity:0;transition:opacity 1.8s ease;filter:saturate(1.06) contrast(1.02);}
+.hero-media .hero-slide.is-active{opacity:1;}
+.hero-media::after{content:"";position:absolute;inset:0;z-index:1;background:
+    linear-gradient(180deg,rgba(18,47,31,.62) 0%,rgba(18,47,31,.26) 34%,rgba(18,47,31,.85) 100%),
+    radial-gradient(120% 90% at 18% 10%,rgba(122,155,120,.28),transparent 55%);}
+.hero-ridges{position:absolute;inset:auto 0 0 0;width:100%;line-height:0;z-index:1;}
+.hero-ridges svg{width:100%;height:auto;display:block;}
+.hero-inner{position:relative;z-index:2;width:100%;padding-bottom:clamp(3.5rem,8vw,6rem);padding-top:7.5rem;}
+.hero-eyebrow{color:var(--gold-soft);}
+.hero h1{color:var(--ivory);font-size:clamp(3rem,8vw,6.4rem);line-height:.98;margin-top:1.1rem;max-width:16ch;}
+.hero h1 em{font-family:var(--font-script);font-style:italic;font-weight:500;color:var(--gold-soft);}
+.hero-sub{margin-top:1.75rem;max-width:520px;font-size:1.12rem;color:rgba(250,248,242,.88);line-height:1.8;}
+.hero-actions{display:flex;flex-wrap:wrap;gap:1.1rem;margin-top:2.75rem;}
+.hero-scroll{position:absolute;right:var(--pad-page);bottom:2.4rem;z-index:2;display:flex;flex-direction:column;
+  align-items:center;gap:.6rem;color:var(--ivory);opacity:.85;}
+.hero-scroll span{writing-mode:vertical-rl;font-size:.68rem;letter-spacing:.25em;text-transform:uppercase;}
+.hero-scroll .line{width:1px;height:46px;background:linear-gradient(var(--gold),transparent);animation:scrolldip 2.2s ease-in-out infinite;}
+@keyframes scrolldip{0%,100%{transform:scaleY(1);opacity:.9;}50%{transform:scaleY(.55);opacity:.4;}}
+@media(max-width:640px){.hero-scroll{display:none;}}
+
+/* Dividers */
+.divider{display:block;width:100%;line-height:0;}
+.divider svg{width:100%;height:clamp(40px,7vw,90px);display:block;}
+
+/* Welcome */
+.welcome{background:var(--ivory);padding:var(--pad-section) 0;position:relative;}
+.welcome .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2.5rem,6vw,5rem);align-items:center;}
+.welcome-art{position:relative;aspect-ratio:4/5;border-radius:var(--radius-lg);overflow:hidden;
+  background:linear-gradient(155deg,#2c5b3f,#1F4D36 55%,#12301f);box-shadow:var(--shadow-md);}
+.welcome-art::before{content:"";position:absolute;inset:0;background-image:var(--topo-gold);background-size:240px;opacity:.55;}
+.welcome-art .frame{position:absolute;inset:18px;border:1px solid rgba(250,248,242,.35);border-radius:calc(var(--radius-lg) - 12px);}
+.welcome-art .motif{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
+.welcome-art .motif svg{width:46%;color:var(--gold-soft);opacity:.9;}
+.welcome-art.has-photo{background-size:cover;background-position:center;}
+.welcome-art.has-photo::before,.welcome-art.has-photo .motif{opacity:0;}
+.welcome-badge{position:absolute;left:-1.5rem;bottom:-1.5rem;background:var(--ivory);border-radius:var(--radius-md);
+  padding:1.5rem 1.75rem;box-shadow:var(--shadow-md);border:1px solid var(--gold-line);max-width:230px;}
+.welcome-badge .num{font-family:var(--font-display);font-size:2.4rem;color:var(--heritage);line-height:1;}
+.welcome-badge .lbl{margin-top:.4rem;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--charcoal-soft);font-weight:600;}
+@media(max-width:640px){.welcome-badge{left:1rem;bottom:-1.25rem;padding:1.1rem 1.3rem;}}
+
+.welcome-content .script{display:block;margin-bottom:.25rem;}
+.welcome-points{margin-top:2.25rem;display:grid;gap:1.15rem;}
+.welcome-points li{display:flex;gap:.9rem;align-items:flex-start;font-size:.98rem;color:var(--charcoal-soft);}
+.welcome-points svg{flex:none;width:20px;height:20px;color:var(--gold);margin-top:.15rem;}
+.welcome-points b{color:var(--forest);font-weight:600;}
+.welcome-content .btn{margin-top:2.5rem;}
+
+/* Shared card / image-plate styles, reused across rooms, gallery and experiences */
+.card-grid{display:grid;gap:clamp(1.5rem,3vw,2.25rem);}
+.plate{position:relative;aspect-ratio:5/4;border-radius:var(--radius-md);overflow:hidden;
+  background:linear-gradient(150deg,#3c6a4a,#1F4D36 60%,#12301f);isolation:isolate;}
+.plate::before{content:"";position:absolute;inset:-6%;background-image:var(--topo-gold);background-size:200px;opacity:.4;
+  transition:transform .7s var(--ease);}
+.plate .plate-icon{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
+.plate .plate-icon svg{width:30%;color:rgba(250,248,242,.5);transition:transform .6s var(--ease),color .5s var(--ease);}
+.plate .plate-sheen{position:absolute;inset:0;background:linear-gradient(115deg,transparent 35%,rgba(250,248,242,.16) 48%,transparent 62%);
+  transform:translateX(-120%);transition:transform .85s var(--ease);pointer-events:none;}
+.plate .plate-tag{position:absolute;top:.9rem;left:.9rem;background:rgba(18,47,31,.55);backdrop-filter:blur(4px);
+  color:var(--gold-soft);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;
+  padding:.4rem .7rem;border-radius:999px;border:1px solid rgba(250,248,242,.25);}
+.plate:hover::before{transform:scale(1.08);}
+.plate:hover .plate-icon svg{transform:scale(1.12);color:var(--gold-soft);}
+.plate:hover .plate-sheen{transform:translateX(120%);}
+.plate.has-photo{background-size:cover;background-position:center;}
+.plate.has-photo::before,.plate.has-photo .plate-icon{opacity:0;}
+
+/* Experiences */
+.experiences{background:var(--forest);padding:var(--pad-section) 0;position:relative;overflow:hidden;}
+.experiences::after{content:"";position:absolute;inset:0;background-image:var(--topo-gold);background-size:260px;opacity:.12;pointer-events:none;}
+.experiences .wrap{position:relative;}
+.experiences .card-grid{grid-template-columns:repeat(3,1fr);}
+.exp-card{position:relative;border-radius:var(--radius-md);overflow:hidden;aspect-ratio:3/3.6;isolation:isolate;
+  background:linear-gradient(165deg,#3c6a4a,#1F4D36 55%,#12301f);box-shadow:0 14px 40px rgba(0,0,0,.25);
+  transition:transform .5s var(--ease),box-shadow .5s var(--ease);}
+.exp-card:hover{transform:translateY(-8px);box-shadow:0 22px 54px rgba(0,0,0,.32);}
+.exp-card::before{content:"";position:absolute;inset:-6%;background-image:var(--topo-gold);background-size:180px;opacity:.35;
+  transition:transform .8s var(--ease);}
+.exp-card:hover::before{transform:scale(1.1) rotate(1deg);}
+.exp-card .content{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:1.6rem;
+  background:linear-gradient(0deg,rgba(18,47,31,.92) 5%,rgba(18,47,31,.15) 55%,transparent 75%);}
+.exp-card svg.ic{width:34px;height:34px;color:var(--gold);margin-bottom:.9rem;transition:transform .5s var(--ease);}
+.exp-card:hover svg.ic{transform:translateY(-4px) scale(1.08);}
+.exp-card.has-photo{background-size:cover;background-position:center;}
+.exp-card.has-photo::before,.exp-card.has-photo svg.ic{opacity:0;}
+.exp-card h3{color:var(--ivory);font-size:1.15rem;}
+.exp-card p{color:var(--sage-soft);font-size:.86rem;margin-top:.5rem;line-height:1.6;}
+
+/* Why Choose Us */
+.why{background:var(--ivory);padding:var(--pad-section) 0;}
+.why .card-grid{grid-template-columns:repeat(3,1fr);}
+.why-card{padding:2.4rem 2rem;text-align:left;border-radius:var(--radius-md);background:#fff;
+  border:1px solid rgba(36,40,36,.06);box-shadow:var(--shadow-sm);transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .4s var(--ease);}
+.why-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-md);border-color:var(--gold-line);}
+.why-card .ic-wrap{width:56px;height:56px;border-radius:50%;background:var(--forest-tint);display:flex;align-items:center;
+  justify-content:center;margin-bottom:1.4rem;}
+.why-card svg{width:26px;height:26px;color:var(--forest);}
+.why-card h3{font-size:1.18rem;}
+.why-card p{margin-top:.7rem;color:var(--charcoal-soft);font-size:.92rem;}
+
+/* Gallery */
+.gallery{background:var(--forest-deep);padding:var(--pad-section) 0;position:relative;}
+.gallery::after{content:"";position:absolute;inset:0;background-image:var(--topo-gold);background-size:280px;opacity:.08;pointer-events:none;}
+.gallery .wrap{position:relative;}
+.masonry{columns:3 220px;column-gap:1.4rem;}
+.masonry .plate{width:100%;margin:0 0 1.4rem;break-inside:avoid;border:1px solid rgba(250,248,242,.1);}
+.masonry .plate.h1{aspect-ratio:4/5;}
+.masonry .plate.h2{aspect-ratio:4/3.1;}
+.masonry .plate.h3{aspect-ratio:4/5.6;}
+.masonry .plate::before{opacity:.3;}
+.masonry .plate:hover .plate-icon svg{transform:scale(1.08);}
+.masonry .plate-icon svg{transition:transform .5s var(--ease);}
+
+/* Testimonials */
+.testimonials{background:var(--ivory);padding:var(--pad-section) 0;}
+.t-stat-block{display:flex;align-items:center;justify-content:center;gap:clamp(2rem,6vw,4rem);flex-wrap:wrap;
+  margin-top:1rem;}
+.t-stat{display:flex;flex-direction:column;align-items:center;text-align:center;}
+.t-stat .num{font-family:var(--font-display);font-size:2.6rem;color:var(--heritage);line-height:1;}
+.t-stat .lbl{margin-top:.4rem;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--charcoal-soft);font-weight:600;}
+.t-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.75rem;}
+.t-card{background:#fff;border:1px solid rgba(36,40,36,.07);border-radius:var(--radius-md);padding:2.2rem 2rem;
+  box-shadow:var(--shadow-sm);position:relative;}
+.t-card .quote-mark{font-family:var(--font-display);font-size:3.2rem;color:var(--gold);line-height:.5;height:1.6rem;display:block;}
+.t-card p.quote{margin-top:1rem;color:var(--charcoal);font-size:.98rem;line-height:1.75;font-style:italic;}
+.t-card .stars{display:flex;gap:.2rem;margin-top:1.4rem;color:var(--gold);}
+.t-card .stars svg{width:15px;height:15px;}
+.t-card .who{margin-top:.9rem;display:flex;flex-direction:column;}
+.t-card .who .name{font-weight:600;color:var(--forest);font-size:.92rem;}
+.t-card .who .tag{font-size:.74rem;color:var(--charcoal-soft);margin-top:.15rem;}
+
+/* Location */
+.location{background:var(--ivory-deep);padding:var(--pad-section) 0;}
+.location .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2.5rem,6vw,5rem);align-items:center;}
+.map-plate{position:relative;aspect-ratio:1/1;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-md);
+  background:var(--ivory-deep);isolation:isolate;transition:box-shadow .4s var(--ease);}
+.map-plate:hover{box-shadow:0 26px 60px rgba(18,47,31,.28);}
+.map-plate iframe{position:absolute;inset:0;width:100%;height:100%;border:0;filter:saturate(.9) contrast(1.02);}
+.map-plate::after{content:"";position:absolute;inset:0;border-radius:var(--radius-lg);border:1px solid var(--gold-line);
+  pointer-events:none;z-index:1;}
+.map-plate .map-tap{position:absolute;right:1rem;bottom:1rem;z-index:2;white-space:nowrap;display:inline-flex;align-items:center;gap:.4rem;
+  background:var(--forest);color:var(--ivory);font-size:.68rem;font-weight:600;
+  letter-spacing:.06em;text-transform:uppercase;padding:.65rem 1rem;border-radius:999px;border:1px solid rgba(250,248,242,.2);
+  box-shadow:var(--shadow-sm);transition:background-color .3s var(--ease),transform .3s var(--ease);}
+.map-plate .map-tap:hover{background:var(--forest-deep);transform:translateY(-2px);}
+.map-plate .map-tap svg{width:13px;height:13px;}
+.loc-list{margin-top:2rem;display:grid;gap:1.3rem;}
+.loc-list a{display:flex;gap:1rem;align-items:flex-start;color:inherit;text-decoration:none;transition:opacity .25s var(--ease);}
+.loc-list a:hover{opacity:.72;}
+.loc-list svg{flex:none;width:22px;height:22px;color:var(--heritage);margin-top:.2rem;}
+.loc-list .lbl{display:block;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--charcoal-soft);font-weight:600;}
+.loc-list .val{display:block;color:var(--forest);font-weight:600;margin-top:.35rem;}
+.location .btn{margin-top:2.2rem;}
+
+/* Booking CTA */
+.cta{position:relative;background:linear-gradient(155deg,#12301f,#1F4D36 55%,#2c5b3f);padding:clamp(5rem,10vw,8rem) 0;
+  overflow:hidden;text-align:center;}
+.cta::before{content:"";position:absolute;inset:0;background-image:var(--topo-gold);background-size:300px;opacity:.14;}
+.cta .wrap{position:relative;display:flex;flex-direction:column;align-items:center;}
+.cta .script{display:block;}
+.cta h2{color:var(--ivory);font-size:clamp(2.4rem,5.5vw,4rem);max-width:16ch;margin-top:.6rem;}
+.cta p{color:var(--sage-soft);margin-top:1.3rem;max-width:480px;font-size:1.05rem;}
+.cta .btn{margin-top:2.6rem;}
+
+/* Responsive */
+@media(max-width:1080px){
+  .experiences .card-grid,.why .card-grid,.t-grid{grid-template-columns:repeat(2,1fr);}
+  .masonry{columns:2 220px;}
+}
+@media(max-width:760px){
+  .welcome .wrap,.location .wrap{grid-template-columns:1fr;}
+  .experiences .card-grid,.why .card-grid,.t-grid{grid-template-columns:1fr;}
+  .masonry{columns:1 100%;}
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="nav" id="siteNav">
+  <div class="wrap">
+    <a href="#home" class="brand">
+      <svg class="brand-mark" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M24 4 L44 34 H4 Z" stroke="currentColor" stroke-width="1.4" fill="none"/>
+        <path d="M24 16 L36 34 H12 Z" stroke="currentColor" stroke-width="1.4" fill="none"/>
+        <circle cx="24" cy="24" r="21.5" stroke="currentColor" stroke-width="1" opacity=".5"/>
+      </svg>
+      <span class="brand-text">
+        <span class="name">Gokarna Hillside</span>
+        <span class="loc">Resort &middot; Nepal</span>
+      </span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="rooms.html">Rooms &amp; Suites</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="#experiences">Experiences</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li class="nav-mobile-cta"><a href="estimate.html" class="btn btn-outline-gold nav-cta">Estimate Your Stay</a></li>
+      <li class="nav-mobile-cta"><a href="book.html" class="btn btn-gold nav-cta">Book Your Stay</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="nav-cta-group desktop-only">
+        <a href="estimate.html" class="btn btn-outline-gold nav-cta">Estimate Your Stay</a>
+        <a href="book.html" class="btn btn-gold nav-cta">Book Your Stay</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+        <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><path d="M4 8h18M4 13h18M4 18h18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="nav-scrim" id="navScrim"></div>
+
+<!-- Hero -->
+<section class="hero" id="home">
+  <div class="hero-media" id="heroMedia">
+    <!-- Hero slideshow photos, when set in the admin panel, are inserted here by assets/content-loader.js -->
+  </div>
+  <div class="hero-inner wrap">
+    <p class="eyebrow hero-eyebrow"><span class="script" style="font-size:1rem;" data-content="hero.eyebrow">Jagadol, Gokarna, Nepal</span></p>
+    <h1><span data-content="hero.title_line1">Escape to</span><br>the <em data-content="hero.title_emphasis">Hills</em></h1>
+    <p class="hero-sub" data-content="hero.subtitle">Experience peace, nature, and warm Nepalese hospitality at Gokarna Hillside Resort — a boutique retreat cradled in the forested hills above the Kathmandu Valley.</p>
+    <div class="hero-actions">
+      <a href="book.html" class="btn btn-gold">Book Your Stay</a>
+      <a href="#about" class="btn btn-outline-light">Explore the Resort</a>
+    </div>
+  </div>
+  <div class="hero-ridges" aria-hidden="true">
+    <svg viewBox="0 0 1440 140" preserveAspectRatio="none"><path d="M0,90 C160,30 300,120 480,70 C640,25 780,110 960,60 C1120,20 1260,90 1440,45 L1440,140 L0,140 Z" fill="#FAF8F2"/></svg>
+  </div>
+  <div class="hero-scroll" aria-hidden="true"><span>Scroll</span><i class="line"></i></div>
+</section>
+
+<!-- Welcome / about -->
+<section class="welcome" id="about">
+  <div class="wrap">
+    <div class="welcome-art reveal">
+      <div class="motif">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <g stroke="currentColor" stroke-width="1">
+            <path d="M50 12 C58 22 58 30 50 38 C42 30 42 22 50 12Z"/>
+            <path d="M50 12 C40 20 32 24 22 24 C30 32 38 34 47 32"/>
+            <path d="M50 12 C60 20 68 24 78 24 C70 32 62 34 53 32"/>
+            <path d="M50 12 C46 28 46 40 50 50 C54 40 54 28 50 12Z"/>
+            <circle cx="50" cy="46" r="4"/>
+          </g>
+        </svg>
+      </div>
+      <div class="frame"></div>
+      <div class="welcome-badge">
+        <span class="num">15+</span>
+        <span class="lbl">Years Welcoming Guests to the Hills</span>
+      </div>
+    </div>
+    <div class="welcome-content reveal">
+      <p class="eyebrow">Welcome</p>
+      <span class="script">A quiet hillside sanctuary</span>
+      <h2 class="section-title">Where the city fades<br>and the hills begin</h2>
+      <p class="section-lede">Tucked into the terraced slopes of Jagadol in Gokarna, our resort sits just far enough from Kathmandu's bustle to feel like another world — pine-scented air, birdsong at dawn, and views that stretch across forested ridgelines. This is a place built for slowing down.</p>
+      <ul class="welcome-points">
+        <li><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.5-7-11a7 7 0 0 1 14 0c0 6.5-7 11-7 11Z" stroke="currentColor" stroke-width="1.4"/><circle cx="12" cy="10" r="2.4" stroke="currentColor" stroke-width="1.4"/></svg><span><b>Hillside setting</b> — private grounds surrounded by pine and rhododendron forest</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none"><path d="M4 18V9l8-5 8 5v9" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M9 18v-6h6v6" stroke="currentColor" stroke-width="1.4"/></svg><span><b>Comfortable accommodation</b> — rooms designed for genuine rest</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 21c3-2 5-6 5-10a6 6 0 0 1 12 0c0 6-5 10-8 10" stroke="currentColor" stroke-width="1.4"/></svg><span><b>Warm hospitality</b> — genuine Nepalese care, in every detail</span></li>
+      </ul>
+      <a href="rooms.html" class="btn btn-forest">Discover Your Room</a>
+    </div>
+  </div>
+</section>
+
+<!-- Experiences -->
+<section class="experiences" id="experiences">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <p class="eyebrow center on-dark">Resort Experiences</p>
+      <h2 class="section-title on-dark">Slow mornings,<br>full days</h2>
+      <p class="section-lede on-dark">However you like to spend your time in the hills, there is space for it here — from quiet reflection to shared moments with family.</p>
+    </div>
+    <div class="card-grid reveal-stagger">
+      <div class="exp-card" data-exp-id="nature-walks"><div class="content">
+        <svg class="ic" viewBox="0 0 24 24" fill="none"><path d="M3 20l6-11 4 6 3-4 5 9H3Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+        <h3>Guided Nature Walks</h3><p>Wander marked forest trails through pine and rhododendron with a local guide.</p>
+      </div></div>
+      <div class="exp-card" data-exp-id="wellness"><div class="content">
+        <svg class="ic" viewBox="0 0 24 24" fill="none"><path d="M12 3v3M12 18v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M3 12h3M18 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1" stroke="currentColor" stroke-width="1.3"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.3"/></svg>
+        <h3>Relaxation &amp; Wellness</h3><p>Unwind with gentle yoga at sunrise and quiet garden corners built for stillness.</p>
+      </div></div>
+      <div class="exp-card" data-exp-id="viewpoints"><div class="content">
+        <svg class="ic" viewBox="0 0 24 24" fill="none"><path d="M2 18l5-8 4 5 3-4 8 7H2Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><circle cx="17" cy="6" r="2" stroke="currentColor" stroke-width="1.3"/></svg>
+        <h3>Scenic Viewpoints</h3><p>Watch the sun rise over the valley from our hillside viewing deck.</p>
+      </div></div>
+      <div class="exp-card" data-exp-id="outdoor-dining"><div class="content">
+        <svg class="ic" viewBox="0 0 24 24" fill="none"><path d="M4 21c4-9 12-9 16-16" stroke="currentColor" stroke-width="1.3"/><path d="M9 21c2-6 6-9 9-13" stroke="currentColor" stroke-width="1.3"/></svg>
+        <h3>Outdoor Dining</h3><p>Share a meal on the terrace, surrounded by forest air and hillside views.</p>
+      </div></div>
+      <div class="exp-card" data-exp-id="family-time"><div class="content">
+        <svg class="ic" viewBox="0 0 24 24" fill="none"><circle cx="8" cy="7" r="2.3" stroke="currentColor" stroke-width="1.3"/><circle cx="16" cy="8" r="1.9" stroke="currentColor" stroke-width="1.3"/><path d="M3 20c0-3.3 2.3-5.7 5-5.7s5 2.4 5 5.7M13 20c0-2.6 1.7-4.7 3.8-4.7S20.5 17.4 20.5 20" stroke="currentColor" stroke-width="1.3"/></svg>
+        <h3>Family Time</h3><p>Open lawns and easy trails make space for everyone, from children to grandparents.</p>
+      </div></div>
+      <div class="exp-card" data-exp-id="local-experiences"><div class="content">
+        <svg class="ic" viewBox="0 0 24 24" fill="none"><path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+        <h3>Local Experiences</h3><p>Visit nearby Gokarna Mahadev Temple or take a short walk through the village.</p>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Why Choose Us -->
+<section class="why" id="why">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <p class="eyebrow center">Why Choose Us</p>
+      <h2 class="section-title">The Gokarna Hillside difference</h2>
+    </div>
+    <div class="card-grid reveal-stagger">
+      <div class="why-card"><div class="ic-wrap"><svg viewBox="0 0 24 24" fill="none"><path d="M4 20l6-11 4 6 3-4 5 9H4Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></div>
+        <h3>Peaceful Hillside Location</h3><p>Set apart from the city, on a quiet forested slope in Jagadol, Gokarna.</p></div>
+      <div class="why-card"><div class="ic-wrap"><svg viewBox="0 0 24 24" fill="none"><path d="M4 18V9l8-5 8 5v9" stroke="currentColor" stroke-width="1.3"/><path d="M9 18v-6h6v6" stroke="currentColor" stroke-width="1.3"/></svg></div>
+        <h3>Comfortable Rooms</h3><p>Thoughtfully appointed spaces designed for genuine, uninterrupted rest.</p></div>
+      <div class="why-card"><div class="ic-wrap"><svg viewBox="0 0 24 24" fill="none"><path d="M5 21c3-2 5-6 5-10a6 6 0 0 1 12 0c0 6-5 10-8 10" stroke="currentColor" stroke-width="1.3"/></svg></div>
+        <h3>Warm Hospitality</h3><p>Genuine Nepalese care from a team that treats every guest like family.</p></div>
+      <div class="why-card"><div class="ic-wrap"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3c4 3 6 6 6 10a6 6 0 1 1-12 0c0-4 2-7 6-10Z" stroke="currentColor" stroke-width="1.3"/></svg></div>
+        <h3>Beautiful Nature</h3><p>Pine forest, terraced gardens, and rhododendron trails right outside your door.</p></div>
+      <div class="why-card"><div class="ic-wrap"><svg viewBox="0 0 24 24" fill="none"><circle cx="8" cy="7" r="2.3" stroke="currentColor" stroke-width="1.3"/><circle cx="16" cy="8" r="1.9" stroke="currentColor" stroke-width="1.3"/><path d="M3 20c0-3.3 2.3-5.7 5-5.7s5 2.4 5 5.7M13 20c0-2.6 1.7-4.7 3.8-4.7S20.5 17.4 20.5 20" stroke="currentColor" stroke-width="1.3"/></svg></div>
+        <h3>Family-Friendly</h3><p>Open grounds and flexible spaces welcoming guests of every age.</p></div>
+      <div class="why-card"><div class="ic-wrap"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg></div>
+        <h3>Memorable Experiences</h3><p>From temple visits to sunrise walks, moments guests carry home with them.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Gallery -->
+<section class="gallery" id="gallery">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <p class="eyebrow center on-dark">Gallery</p>
+      <h2 class="section-title on-dark">A glimpse of the hills</h2>
+      <p class="section-lede on-dark">Full resort photography is on its way — for now, here's a sense of the spaces awaiting you.</p>
+    </div>
+    <div class="masonry reveal">
+      <div class="plate h1" data-gallery-index="0"><div class="plate-tag">Resort Exterior</div><div class="plate-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M3 20l6-11 4 6 3-4 5 9H3Z" stroke="currentColor" stroke-width="1.1"/></svg></div><div class="plate-sheen"></div></div>
+      <div class="plate h2" data-gallery-index="1"><div class="plate-tag">Guest Rooms</div><div class="plate-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 18V9l8-5 8 5v9" stroke="currentColor" stroke-width="1.1"/></svg></div><div class="plate-sheen"></div></div>
+      <div class="plate h3" data-gallery-index="2"><div class="plate-tag">Dining</div><div class="plate-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3c4 3 6 6 6 10a6 6 0 1 1-12 0c0-4 2-7 6-10Z" stroke="currentColor" stroke-width="1.1"/></svg></div><div class="plate-sheen"></div></div>
+      <div class="plate h2" data-gallery-index="3"><div class="plate-tag">Gardens</div><div class="plate-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.5-7-11a7 7 0 0 1 14 0c0 6.5-7 11-7 11Z" stroke="currentColor" stroke-width="1.1"/></svg></div><div class="plate-sheen"></div></div>
+      <div class="plate h1" data-gallery-index="4"><div class="plate-tag">Hillside Views</div><div class="plate-icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="17" cy="6" r="2" stroke="currentColor" stroke-width="1.1"/><path d="M2 18l5-8 4 5 3-4 8 7H2Z" stroke="currentColor" stroke-width="1.1"/></svg></div><div class="plate-sheen"></div></div>
+      <div class="plate h2" data-gallery-index="5"><div class="plate-tag">Common Areas</div><div class="plate-icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="8" cy="7" r="2.3" stroke="currentColor" stroke-width="1.1"/><path d="M3 20c0-3.3 2.3-5.7 5-5.7s5 2.4 5 5.7" stroke="currentColor" stroke-width="1.1"/><circle cx="16" cy="8" r="1.9" stroke="currentColor" stroke-width="1.1"/><path d="M13 20c0-2.6 1.7-4.7 3.8-4.7S20.5 17.4 20.5 20" stroke="currentColor" stroke-width="1.1"/></svg></div><div class="plate-sheen"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="testimonials" id="testimonials">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <p class="eyebrow center">Guest Reviews</p>
+      <h2 class="section-title">Words from the hillside</h2>
+      <p class="section-lede">Real feedback from real guests, straight from Google — not written by us.</p>
+    </div>
+    <div class="t-stat-block reveal">
+      <div class="t-stat"><span class="num">92%</span><span class="lbl">Guests Recommend Us</span></div>
+      <div class="t-stat"><span class="num">550+</span><span class="lbl">Google Reviews</span></div>
+      <a href="https://share.google/ALDJtnnekl20Mqhep" target="_blank" rel="noopener" class="btn btn-forest">Read Our Reviews on Google</a>
+    </div>
+  </div>
+</section>
+
+<!-- Location -->
+<section class="location" id="contact">
+  <div class="wrap">
+    <div class="map-plate reveal">
+      <iframe src="https://www.google.com/maps?q=27.7428095,85.3778165(Gokarna%20Hillside%20Resort)&z=15&output=embed"
+        loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        title="Map showing Gokarna Hillside Resort in Jagadol, Gokarna"></iframe>
+      <a href="https://maps.app.goo.gl/GP5NUJcRk6WhQDvW8" target="_blank" rel="noopener" class="map-tap">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Open in Google Maps
+      </a>
+    </div>
+    <div class="loc-content reveal">
+      <p class="eyebrow">Location</p>
+      <span class="script">Find your way to us</span>
+      <h2 class="section-title">Gokarna Hillside Resort</h2>
+      <p class="section-lede">Jagadol, Gokarna, Nepal — a short, scenic drive from central Kathmandu, close enough for an easy journey, far enough to feel worlds away.</p>
+      <ul class="loc-list">
+        <li><a href="https://maps.app.goo.gl/GP5NUJcRk6WhQDvW8" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2C7.6 2 4 5.6 4 10c0 6 8 12 8 12s8-6 8-12c0-4.4-3.6-8-8-8Zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" stroke="currentColor" stroke-width="1.3"/></svg><span><span class="lbl">Address</span><span class="val" data-content="contact.address">Jagadol, Gokarna, Kathmandu, Nepal</span></span></a></li>
+        <li><a href="mailto:stay@gokarnahillside.com" data-content-href="contact.email"><svg viewBox="0 0 24 24" fill="none"><path d="M3 6l9 6 9-6M4 5h16v14H4Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg><span><span class="lbl">Email</span><span class="val" data-content="contact.email">stay@gokarnahillside.com</span></span></a></li>
+        <li><a href="tel:+9771-000-0000" data-content-href="contact.phone"><svg viewBox="0 0 24 24" fill="none"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2C10.5 21 3 13.5 3 6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg><span><span class="lbl">Phone</span><span class="val" data-content="contact.phone">+977 1-000-0000</span></span></a></li>
+      </ul>
+      <a href="https://maps.app.goo.gl/GP5NUJcRk6WhQDvW8" target="_blank" rel="noopener" class="btn btn-forest">Get Directions</a>
+    </div>
+  </div>
+</section>
+
+<!-- Booking CTA -->
+<section class="cta" id="book-cta">
+  <div class="wrap">
+    <p class="eyebrow on-dark center">Reserve Your Stay</p>
+    <span class="script">The hills are waiting</span>
+    <h2>Your Hillside Escape Awaits</h2>
+    <p>Plan your stay at Gokarna Hillside Resort and trade the noise of the city for pine-scented air, quiet mornings, and warm Nepalese hospitality.</p>
+    <a href="book.html" class="btn btn-gold">Book Your Stay</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="#home" class="brand">
+          <svg class="brand-mark" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M24 4 L44 34 H4 Z" stroke="currentColor" stroke-width="1.4" fill="none"/>
+            <path d="M24 16 L36 34 H12 Z" stroke="currentColor" stroke-width="1.4" fill="none"/>
+            <circle cx="24" cy="24" r="21.5" stroke="currentColor" stroke-width="1" opacity=".5"/>
+          </svg>
+          <span class="brand-text"><span class="name">Gokarna Hillside</span><span class="loc">Resort &middot; Nepal</span></span>
+        </a>
+        <p>A boutique hillside retreat in Jagadol, Gokarna — offering peaceful accommodation, local dining, and warm Nepalese hospitality just above the Kathmandu Valley.</p>
+        <div class="foot-social" aria-label="Social media">
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none"><path d="M14 9h3V6h-3c-2 0-3.5 1.5-3.5 3.5V11H8v3h2.5v6h3v-6H16l.5-3h-3V9.8c0-.5.3-.8.8-.8Z" fill="currentColor"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="4" stroke="currentColor" stroke-width="1.4"/><circle cx="12" cy="12" r="3.6" stroke="currentColor" stroke-width="1.4"/><circle cx="16.6" cy="7.4" r="1" fill="currentColor"/></svg></a>
+          <a href="#" aria-label="TripAdvisor"><svg viewBox="0 0 24 24" fill="none"><circle cx="8" cy="13" r="3.4" stroke="currentColor" stroke-width="1.4"/><circle cx="16" cy="13" r="3.4" stroke="currentColor" stroke-width="1.4"/><path d="M12 9.5c-2-2-6-2.2-9.5-.6M12 9.5c2-2 6-2.2 9.5-.6" stroke="currentColor" stroke-width="1.4"/></svg></a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="rooms.html">Rooms &amp; Suites</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="#experiences">Experiences</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Resort</h4>
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#testimonials">Guest Reviews</a></li>
+          <li><a href="#contact">Location</a></li>
+          <li><a href="book.html">Book Your Stay</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <ul>
+          <li class="contact-item"><a href="https://maps.app.goo.gl/GP5NUJcRk6WhQDvW8" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2C7.6 2 4 5.6 4 10c0 6 8 12 8 12s8-6 8-12c0-4.4-3.6-8-8-8Zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" stroke="currentColor" stroke-width="1.3"/></svg><span data-content="contact.address">Jagadol, Gokarna, Kathmandu, Nepal</span></a></li>
+          <li class="contact-item"><a href="tel:+9771-000-0000" data-content-href="contact.phone"><svg viewBox="0 0 24 24" fill="none"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2C10.5 21 3 13.5 3 6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.3"/></svg><span data-content="contact.phone">+977 1-000-0000</span></a></li>
+          <li class="contact-item"><a href="mailto:stay@gokarnahillside.com" data-content-href="contact.email"><svg viewBox="0 0 24 24" fill="none"><path d="M3 6l9 6 9-6M4 5h16v14H4Z" stroke="currentColor" stroke-width="1.3"/></svg><span data-content="contact.email">stay@gokarnahillside.com</span></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; <span id="year"></span> Gokarna Hillside Resort. All rights reserved.</span>
+      <span>Jagadol, Gokarna, Nepal</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/main.js"></script>
+<script src="assets/content-loader.js"></script>
+</body>
+</html>
