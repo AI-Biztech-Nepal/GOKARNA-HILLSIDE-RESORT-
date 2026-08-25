@@ -38,16 +38,38 @@ UPLOAD_DIR = BASE_DIR / "assets" / "uploads"
 ALLOWED_IMAGE_EXT = {"png", "jpg", "jpeg", "webp", "gif", "svg"}
 MAX_UPLOAD_BYTES = 8 * 1024 * 1024  # 8 MB
 
-DATA_DIR.mkdir(exist_ok=True)
-UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
+try:
+    DATA_DIR.mkdir(exist_ok=True)
+    UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
+except OSError:
+    pass  # read-only filesystem (e.g. Vercel serverless); dirs already ship in the deployment bundle
 
 app = Flask(__name__, template_folder="templates")
 app.config["MAX_CONTENT_LENGTH"] = MAX_UPLOAD_BYTES + 1024
 
 SECRET_FILE = DATA_DIR / "session_secret.txt"
-if not SECRET_FILE.exists():
-    SECRET_FILE.write_text(secrets.token_hex(32), encoding="utf-8")
-app.secret_key = SECRET_FILE.read_text(encoding="utf-8").strip()
+_fallback_secret = None
+
+
+def _get_secret_key():
+    """Reads/creates the session secret on disk. Falls back to an in-memory
+    secret (regenerated per cold start) on a read-only filesystem, so the
+    app still boots there instead of crashing on import."""
+    global _fallback_secret
+    env_secret = os.environ.get("RESORT_SECRET_KEY")
+    if env_secret:
+        return env_secret
+    try:
+        if not SECRET_FILE.exists():
+            SECRET_FILE.write_text(secrets.token_hex(32), encoding="utf-8")
+        return SECRET_FILE.read_text(encoding="utf-8").strip()
+    except OSError:
+        if _fallback_secret is None:
+            _fallback_secret = secrets.token_hex(32)
+        return _fallback_secret
+
+
+app.secret_key = _get_secret_key()
 
 app.config.update(
     SESSION_COOKIE_HTTPONLY=True,
@@ -67,32 +89,54 @@ def _generate_password(length=14):
     return "".join(secrets.choice(alphabet) for _ in range(length))
 
 
+_fallback_auth = None
+
+
 def ensure_admin_account():
-    if AUTH_FILE.exists():
+    global _fallback_auth
+    if AUTH_FILE.exists() or _fallback_auth is not None:
         return
     username = "admin"
     password = _generate_password()
-    AUTH_FILE.write_text(
-        json.dumps({"username": username, "password_hash": generate_password_hash(password)}, indent=2),
-        encoding="utf-8",
-    )
+    auth = {"username": username, "password_hash": generate_password_hash(password)}
+    try:
+        AUTH_FILE.write_text(json.dumps(auth, indent=2), encoding="utf-8")
+        persisted = True
+    except OSError:
+        # Read-only filesystem (e.g. Vercel serverless): keep credentials in
+        # memory for this instance instead of crashing on import.
+        _fallback_auth = auth
+        persisted = False
     banner = "=" * 64
     print(banner)
     print("Gokarna Hillside Resort admin account created.")
     print(f"  URL:      /admin")
     print(f"  Username: {username}")
     print(f"  Password: {password}")
+    if not persisted:
+        print("NOTE: filesystem is read-only here, so this account only lives")
+        print("in memory for this server instance and will reset on restart.")
     print("This password is shown ONLY this once. Log in and change it")
     print("from the admin panel's Account tab.")
     print(banner)
 
 
 def load_auth():
+    if AUTH_FILE.exists():
+        return json.loads(AUTH_FILE.read_text(encoding="utf-8"))
+    ensure_admin_account()
+    if _fallback_auth is not None:
+        return _fallback_auth
     return json.loads(AUTH_FILE.read_text(encoding="utf-8"))
 
 
 def save_auth(auth):
-    AUTH_FILE.write_text(json.dumps(auth, indent=2), encoding="utf-8")
+    global _fallback_auth
+    try:
+        AUTH_FILE.write_text(json.dumps(auth, indent=2), encoding="utf-8")
+        _fallback_auth = None
+    except OSError:
+        _fallback_auth = auth
 
 
 # ---------------------------------------------------------------------------
@@ -427,7 +471,10 @@ def api_content_admin_put():
         validated = validate_content(incoming)
     except ValueError as exc:
         return jsonify({"error": str(exc)}), 400
-    save_content(validated)
+    try:
+        save_content(validated)
+    except OSError:
+        return jsonify({"error": "This deployment's filesystem is read-only; edits can't be saved here."}), 503
     return jsonify({"ok": True})
 
 
@@ -444,7 +491,10 @@ def api_upload():
 
     safe_name = f"{uuid.uuid4().hex}.{ext}"
     dest = UPLOAD_DIR / secure_filename(safe_name)
-    file.save(dest)
+    try:
+        file.save(dest)
+    except OSError:
+        return jsonify({"error": "This deployment's filesystem is read-only; uploads aren't supported here."}), 503
 
     if dest.stat().st_size > MAX_UPLOAD_BYTES:
         dest.unlink(missing_ok=True)
