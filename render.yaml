@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: gokarna-hillside-resort
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn server:app --bind 0.0.0.0:$PORT
+    envVars:
+      - key: RESORT_FORCE_HTTPS
+        value: "1"

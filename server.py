@@ -522,7 +522,8 @@ def api_change_password():
     return jsonify({"ok": True})
 
 
+ensure_admin_account()
+
 if __name__ == "__main__":
-    ensure_admin_account()
     port = int(os.environ.get("PORT", 5000))
     app.run(host="127.0.0.1", port=port, debug=False)
