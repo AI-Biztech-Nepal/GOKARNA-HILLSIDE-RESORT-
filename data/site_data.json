@@ -84,11 +84,12 @@
   "hero": {
     "eyebrow": "Jagdol, Gokarna, Nepal",
     "images": [
-      "/assets/uploads/37fec6e736484509a850fb7c29dd9dba.jpg",
-      "/assets/uploads/f2ce5ddc39d34bc5b8e42a99f60bccf8.jpg",
-      "/assets/uploads/8121d47199dc48589735f11d6ebd02f8.jpg",
-      "/assets/uploads/dc21a28bbf82456c924cdc7b7c5406d6.jpg",
-      "/assets/uploads/ac75636aee5740c1a91eb968f5394f74.jpg"
+      "/assets/uploads/hero-photo-1.jpg",
+      "/assets/uploads/hero-photo-2.jpg",
+      "/assets/uploads/hero-photo-3.jpg",
+      "/assets/uploads/hero-photo-4.jpg",
+      "/assets/uploads/hero-photo-5.jpg",
+      "/assets/uploads/hero-photo-6.jpg"
     ],
     "subtitle": "Experience peace, nature, and warm Nepalese hospitality at Gokarna Hillside Resort — a boutique retreat cradled in the forested hills above the Kathmandu Valley.",
     "title_emphasis": "Hills",
